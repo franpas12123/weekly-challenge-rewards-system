@@ -29,10 +29,14 @@ Route::get('/profile', function () {
     return view('user/profile');
 });
 
-Route::get('/challenges', function () {
-    return view('challenges');
-});
+// Challenges
+Route::get('/challenges', 'ChallengeController@index');
+Route::get('/challenges/create', 'ChallengeController@create');
+Route::get('/challenges/{id}', 'ChallengeController@show');
 
+Route::post('/challenges', 'ChallengeController@store');
+
+// My Badges
 Route::get('/mybadges', function () {
     return view('user/mybadges');
 });
