@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('occupation');
             $table->string('about');
             $table->string('website');
-            $table->integer('points');
+            $table->integer('points')->unsigned()->nullabe()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
