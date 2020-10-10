@@ -1,14 +1,20 @@
 @extends('layouts.layout')
 
 @section('content')
-   <h1>Add a new challenge</h1>
-   <form action="/challenges" method="post">
-      @csrf
-      <label for="name">Challenge Name</label>
-      <input type="text" name="name" id="name">
-      
-      <label for="points">Points Earned</label>
-      <input type="number" name="points" id="points">
-      <button type="submit" class="btn btn-primary">Submit</button>
-   </form>     
+   <div class="col-lg-4 mt-n5 mx-auto">
+      <h1>Add a new challenge</h1>
+      <form action="/challenges" method="post">
+         @csrf
+         <div class="form-group">
+            <label for="name">Challenge Name</label>
+            <input type="text" class="form-control" name="name" id="name">
+         </div>
+         
+         <div class="form-group">
+            <label for="points">Earnable Points</label>
+            <input type="number" class="form-control col-lg-3 mx-auto" name="points" id="points">
+         </div>
+         <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      </form>     
+   </div>
 @endsection
