@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
-   <div class="container mt-n5">
-      <div class="card col-md-8 col-lg-6 mx-auto text-dark mt-n5">
+   <div class="container">
+      <div class="card col-md-8 col-lg-6 mx-auto text-dark">
          <div class="card-body">
             <h1 class="mb-3">Sign up now to participate!</h1>
             <hr>
@@ -99,12 +99,7 @@
                         <div class="input-group-prepend">
                            <i class="fa fa-globe fa-lg input-group-text pt-2"></i>
                         </div>
-                        <input type="text" class="form-control @error('website') is-invalid @enderror" name="website" placeholder="Enter your website (if any)">
-                        @error('website')
-                           <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                           </span>
-                        @enderror
+                        <input type="text" class="form-control" name="website" placeholder="Enter your website (if any)">
                      </div>
                   </div>
                   <button class="btn btn-success btn-lg btn-block col-lg-6 mx-auto" type="submit">Sign up</button>
