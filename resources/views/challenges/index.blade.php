@@ -1,7 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-   <h1 class="mb-4">Challenges Page</h1>
+   <div class="container-fluid mb-4">
+      <img src="{{ asset('img/black_kind_challenges.jpg') }}" class="img-fluid" alt="">
+   </div>
    <div class="d-flex justify-content-center">
       <table class="table table-light col-sm-10 col-md-8 col-lg-6">
          <thead class="thead-dark">
