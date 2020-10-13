@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'country' => ['required', 'string'],
             'occupation' => ['required', 'string'],
             'about' => ['required', 'string'],
-            'website' => ['required', 'string'],
+            // 'website' => ['required', 'string'],
         ]);
     }
 
