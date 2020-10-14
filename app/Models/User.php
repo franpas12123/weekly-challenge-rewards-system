@@ -23,7 +23,8 @@ class User extends Authenticatable
         'country',
         'occupation',
         'about',
-        'website'
+        'website',
+        'points'
     ];
 
     /**
