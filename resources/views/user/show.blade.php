@@ -4,7 +4,6 @@
    <main role="main" class="inner cover">
       <div class="container col-md-6 mx-auto">
          <h1 class="display-3">{{ $user->name }}</h1>
-         <p class="lead">{{ $user->about }}</p>
          
          <div class="card mb-3 text-dark mt-5">
             <div class="profile-pic-container">
@@ -25,6 +24,10 @@
                         <tr>
                            <td scope="row">Occupation</td>
                            <td class="text-center">{{ $user->occupation }}</td>
+                        </tr>
+                        <tr>
+                           <td scope="row">About</td>
+                           <td class="text-center">{{ $user->about }}</td>
                         </tr>
                         <tr>
                            <td scope="row">Website</td>
