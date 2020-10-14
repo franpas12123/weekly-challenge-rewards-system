@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-   <div class="container-fluid mb-4">
+   <div class="container mb-4">
       <img src="{{ asset('img/black_kind_challenges.jpg') }}" class="img-fluid" alt="">
    </div>
    <div class="d-flex justify-content-center">
