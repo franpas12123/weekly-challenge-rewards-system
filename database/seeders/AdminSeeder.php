@@ -18,7 +18,8 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'I Am Admin',
             'email' => 'admin@mail.com',
-            'password' => Hash::make('123')
+            'password' => Hash::make('123'),
+            'level' => 'Kindness Hero Training'
         ]);
     }
 }
