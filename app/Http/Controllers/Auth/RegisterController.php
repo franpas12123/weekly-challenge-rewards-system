@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Level;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -71,7 +72,10 @@ class RegisterController extends Controller
         if($data['website'] == null) {
             $data['website'] = '';
         }
-        
+
+        // Get first level
+        $level = Level::select('name')->first();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -79,7 +83,8 @@ class RegisterController extends Controller
             'country' => $data['country'],
             'occupation' => $data['occupation'],
             'about' => $data['about'],
-            'website' => $data['website']
+            'website' => $data['website'],
+            'level' => $level->name
         ]);
     }
 }
