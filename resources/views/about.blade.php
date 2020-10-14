@@ -1,8 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="img-header mb-4">
-        <img src="{{ asset('img/black_kind_header.jpg') }}" class="img-fluid about-img" alt="">
+    <div class="container-fluid vh-100">
+        <div class="row align-items-center h-75">
+            <img src="{{ asset('/img/black_kind_about_us.jpg') }}" class="col img-fluid" alt="">
+        </div>
     </div>
-    <h1>About Page</h1>
 @endsection
