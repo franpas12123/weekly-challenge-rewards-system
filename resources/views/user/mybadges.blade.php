@@ -17,14 +17,16 @@
                @foreach ($challenges as $challenge)
                   <tr>
                      <td scope="row">{{ $challenge->name }}</td>
-                     @guest
-                        <td>{{ $challenge->points }}</td>
-                     @endguest
+                     <td>{{ $points[$loop->index] }}</td>
                   </tr>
                @endforeach
                <tr>
+                  <td>Total Points</td>
+                  <td>{{ $total }}</td>
+               </tr>
+               <tr>
                   <td>Level</td>
-                  
+                  <td>{{ $status }}</td>
                </tr>
             </tbody>
       </table>
