@@ -60,7 +60,7 @@
                           </a>
 
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('user.show', ['id' => Auth::user()->id]) }}">Profile</a>
+                            <a class="dropdown-item" href="{{ route('user.update', ['id' => Auth::user()->id, 'name' => Auth::user()->name]) }}">Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
