@@ -32,11 +32,15 @@
                         </tr>
                         <tr>
                            <td scope="row">Level</td>
-                           <td class="text-center">{{ $user->points }}</td>
+                           <td class="text-center">{{ $user->level }}</td>
                         </tr>
                      </tbody>
                   </table>
                </div>
+               <form action="{{ route('user.update', ['name' => $user->name, 'id' => $user->id]) }}" method="get">
+                  @csrf
+                  <button class="btn btn-primary" type="submit">Edit</button>
+               </form>
             </div>
           </div>
       </div>
