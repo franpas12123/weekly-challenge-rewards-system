@@ -26,6 +26,7 @@ Route::get('/signup', function () {
 Route::get('/user', 'UserController@index');
 Route::get('/user/create', 'UserController@create')->name('user.create');
 Route::get('/user/{id}', 'UserController@show')->name('user.show')->middleware('auth');
+Route::get('/mybadges', 'UserController@badges')->name('user.badges');
 
 // Route::post('/user', 'UserController@store')->name('user.add');
 
@@ -41,9 +42,6 @@ Route::post('/userchallenges/{user_id}/{challenge_id}', 'UserChallengeController
 Route::post('/userchallenge', 'UserChallengeController@store')->name('userchallenges.store')->middleware('auth');
 
 // My Badges
-Route::get('/mybadges', function () {
-    return view('user/mybadges');
-});
 
 Route::get('/about', function () {
     return view('about');
