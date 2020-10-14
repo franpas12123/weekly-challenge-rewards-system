@@ -40,7 +40,7 @@
                      </tbody>
                   </table>
                </div>
-               <form action="{{ route('user.update', ['name' => $user->name, 'id' => $user->id]) }}" method="get">
+               <form action="{{ route('user.update', ['name' => $user->name, 'id' => $user->id]) }}" method="post">
                   @csrf
                   <button class="btn btn-primary" type="submit">Edit</button>
                </form>
