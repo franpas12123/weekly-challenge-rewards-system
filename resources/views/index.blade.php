@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-  <div class="container vh-100">
+  <div class="container vh-100 h-75">
     <div class="row align-items-center h-75">
       <div class="col mb-3">
         <h1 class="display-3 mb-2 d-none d-lg-block">WEEKLY CHALLENGE</h1>
@@ -40,11 +40,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
       <div class="container my-auto">
         <img src="{{ asset('/img/black_kind_about_us.jpg') }}" class="img-fluid about-us" alt="">
       </div>
-    </div>
+    </div> --}}
   </div>
 </div>
 @endsection
