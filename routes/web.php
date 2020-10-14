@@ -24,13 +24,13 @@ Route::get('/signup', function () {
 
 // User
 Route::post('/user/{name}/{id}', 'UserController@update')->name('user.update')->middleware('auth');
+
 Route::get('/user', 'UserController@index')->name('user.index')->middleware('admin');
 Route::get('/user/create', 'UserController@create')->name('user.create');
-// Route::get('/user/{name}/{id}', 'UserController@update')->name('user.update')->middleware('auth');
 Route::get('/user/{name}/{id}', 'UserController@show')->name('user.show')->middleware('auth');
 Route::get('/user/{name}/{id}', function() {
     return view('user/edit', ['user' => Auth::user()]);
-})->middleware('auth');
+})->name('user.edit')->middleware('auth');
 Route::get('/mybadges', 'UserController@badges')->name('user.badges');
 
 Route::post('/user/{id}', 'UserController@remove')->name('user.remove')->middleware('admin');
