@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Challenge;
+use App\Models\UserChallenge;
+use App\Models\Level;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -23,7 +25,7 @@ class UserController extends Controller
     }
 
     
-    public function show($id)
+    public function show($name, $id)
     {
         // $id = request('id');
         $user = User::findOrFail($id);
@@ -50,13 +52,53 @@ class UserController extends Controller
 
     public function badges()
     {
+        // Get all challenges
         $challenges = Challenge::all();
-        $user_points = User::select('points')->where('id', Auth::id())->first();
+        // Get user points
+        $user = User::select('points', 'level')->where('id', Auth::id())->get();
+        // Get user challenges
+        $uchallenge_points = UserChallenge::where('id', Auth::id())->get();
+        // Get all levels
+        $levels = Level::all();
 
-        foreach ($user_points as $user_point ) {
-            // if()
+        $points = [];
+        foreach ($challenges as $challenge) {
+            $cid = $challenge->id;
+            $uchallenge = UserChallenge::where('challenge_id', $cid)->first();
+            
+            // Check if user completed the challenge
+            if($uchallenge != null) {
+                array_push($points, $challenge->points);
+            } else {
+                array_push($points, 0);
+            }
         }
 
-        return view('user/mybadges', ['challenges', $challenges]);
+        // Get user status
+        $status = $user[0]['level'];
+        $total = $user[0]['points'];
+
+        return view('user/mybadges', [
+            'challenges' => $challenges,
+            'status' => $status,
+            'total' => $total,
+            'points' => $points
+            ]);
+    }
+
+    public function update(Request $req, $name, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'country' => request('country'),
+            'occupation' => request('occupation'),
+            'about' => request('about'),
+            'website' => request('website')
+        ]);
+
+        $user->save();
+
+        return view('index');
     }
 }
