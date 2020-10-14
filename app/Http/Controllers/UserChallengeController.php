@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserChallenge;
+use App\Models\Challenge;
+use App\Models\User;
 
 class UserChallengeController extends Controller
 {
@@ -24,7 +26,6 @@ class UserChallengeController extends Controller
                 'status' => '',
                 'completed' => 1
                 ]);
-            error_log('created');
         } else {
             if($req->status === null) {
                 $req->status = '';
@@ -33,10 +34,22 @@ class UserChallengeController extends Controller
                 'status' => $req->status,
                 'completed' => 1
                 ]);
-            error_log('updated');
+            $user_challenge->save();
         }
-        return redirect()->route('challenges.index')->with('msg','Challenge status updated!');
+        
+        // Get points of the challenge
+        $challenge = Challenge::where('id', $challenge_id)->first();
+        
+        // Update user points
+        $user = User::where('id', $user_id)->first();
+        $points = intval($user->points) + intval($challenge->points);
+        
+        $user->update([
+            'points' => $points
+            ]);
+        $user->save();
 
+        return redirect()->route('challenges.index')->with('msg','Challenge status updated!');
     }
 
     public function store() {
@@ -47,9 +60,8 @@ class UserChallengeController extends Controller
         $user_challenge->status = request('status');
         $user_challenge->completed = request('completed');
 
-        // $challenge->save();
+        $challenge->save();
         
-        error.log('user challenge created');
         return redirect()->route('challenges.index')->with('msg','Challenge status created!');
     }
 }
