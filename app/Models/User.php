@@ -24,7 +24,8 @@ class User extends Authenticatable
         'occupation',
         'about',
         'website',
-        'points'
+        'points',
+        'level'
     ];
 
     /**
