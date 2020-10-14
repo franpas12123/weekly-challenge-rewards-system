@@ -66,7 +66,7 @@ Auth::routes();
 
 Route::get('/', function() {
     if(Auth::check()) {
-        return view('user.show', ['user' => Auth::user()]);
+        return view('user/show', ['user' => Auth::user()]);
     }
     return view('index');
 })->name('index');
