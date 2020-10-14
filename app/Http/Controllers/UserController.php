@@ -125,4 +125,9 @@ class UserController extends Controller
 
         return view('user/index', ['users' => $all]);
     }
+
+    public function edit()
+    {
+        return view('user/edit', ['user' => Auth::user()]);
+    }
 }
