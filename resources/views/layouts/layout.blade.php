@@ -22,6 +22,13 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <a class="navbar-brand mr-auto" href="/">Weekly Challenge Website</a>
                 <ul class="navbar-nav mt-2 mt-lg-0">
+                  @auth
+                    @if (Auth::id() == 1)
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('user.index') }}">Users</a>
+                      </li>
+                    @endif
+                  @endauth
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route('challenges.index') }}">Challenges</a>
                   </li>
