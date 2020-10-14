@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Challenge;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,5 +46,17 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/')->with('msg', 'Registered! You can now login.');
+    }
+
+    public function badges()
+    {
+        $challenges = Challenge::all();
+        $user_points = User::select('points')->where('id', Auth::id())->first();
+
+        foreach ($user_points as $user_point ) {
+            // if()
+        }
+
+        return view('user/mybadges', ['challenges', $challenges]);
     }
 }
