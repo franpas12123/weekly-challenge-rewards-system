@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('country')->default('');
             $table->string('occupation')->default('');
             $table->string('about')->default('');
-            $table->string('website')->default(' ');
+            $table->string('website')->default('');
             $table->integer('points')->unsigned()->default(0);
             $table->string('level');
             $table->rememberToken();
