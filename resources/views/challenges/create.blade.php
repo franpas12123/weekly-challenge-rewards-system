@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-   <div class="col-lg-4 mt-n5 mx-auto">
+   <div class="col-lg-4 mx-auto">
       <h1>Add a new challenge</h1>
       <form action="/challenges" method="post">
          @csrf
