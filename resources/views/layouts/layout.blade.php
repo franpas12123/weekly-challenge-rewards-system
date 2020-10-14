@@ -25,11 +25,13 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route('challenges.index') }}">Challenges</a>
                   </li>
+                  @auth
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('user.badges')}}">My Badge</a>
+                    </li>
+                  @endauth
                   <li class="nav-item">
-                    <a class="nav-link" href="/mybadges">My Badge</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/blog">Blog</a>
+                    <a class="nav-link" href="https://wordpress.com/">Blog</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/podcast">Podcast</a>
