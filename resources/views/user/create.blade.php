@@ -37,11 +37,25 @@
                   </div>
 
                   <div class="row">
-                     <div class="col input-group">
+                     <div class="col mb-3 input-group">
                         <div class="input-group-prepend">
                            <i class="fa fa-lock fa-lg input-group-text pt-2"></i>
                         </div>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter your password" required>
+                        @error('password')
+                           <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                           </span>
+                        @enderror
+                     </div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col input-group">
+                        <div class="input-group-prepend">
+                           <i class="fa fa-lock fa-lg input-group-text pt-2"></i>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation" required>
                         @error('password')
                            <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
