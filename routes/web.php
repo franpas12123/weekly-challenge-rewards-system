@@ -25,8 +25,10 @@ Route::get('/signup', function () {
 // User
 Route::get('/user', 'UserController@index');
 Route::get('/user/create', 'UserController@create')->name('user.create');
-Route::get('/user/{id}', 'UserController@show')->name('user.show')->middleware('auth');
+Route::get('/user/{name}/{id}', 'UserController@show')->name('user.show')->middleware('auth');
+Route::get('/user/{name}/{id}', 'UserController@update')->name('user.update')->middleware('auth');
 Route::get('/mybadges', 'UserController@badges')->name('user.badges');
+
 
 // Route::post('/user', 'UserController@store')->name('user.add');
 
