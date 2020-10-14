@@ -89,16 +89,40 @@ class UserController extends Controller
     public function update(Request $req, $name, $id)
     {
         $user = User::findOrFail($id);
+        
+        
+        if($req->country === null) {
+            $req->country = '';
+        }
+        
+        if($req->occupation === null) {
+            $req->occupation = '';
+        }
+
+        if($req->about === null) {
+            $req->about = '';
+        }
+        if($req->website === null) {
+            $req->website = '';
+        }
 
         $user->update([
-            'country' => request('country'),
-            'occupation' => request('occupation'),
-            'about' => request('about'),
-            'website' => request('website')
+            'country' => $req->country,
+            'occupation' => $req->occupation,
+            'about' => $req->about,
+            'website' => $req->website
         ]);
 
         $user->save();
 
-        return view('index');
+        return view('user.show', ['user' => $user]);
+    }
+
+    public function remove($id)
+    {
+        $user = User::findOrFail($id)->delete();
+        $all = User::all();
+
+        return view('user/index', ['users' => $all]);
     }
 }
