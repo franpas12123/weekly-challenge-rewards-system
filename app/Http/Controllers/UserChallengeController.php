@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\UserChallenge;
 use App\Models\Challenge;
 use App\Models\User;
+use App\Models\Level;
 
 class UserChallengeController extends Controller
 {
@@ -16,26 +17,34 @@ class UserChallengeController extends Controller
         $input = $req->all();
         
         $user_challenge = UserChallenge::where('user_id', $user_id)->where('challenge_id', $challenge_id)->first();
-
-        error_log('uid: ' . $user_id. '   cid: '.$challenge_id);
         
-        if($user_challenge === null) {
-            UserChallenge::create([
-                'user_id' => $user_id,
-                'challenge_id' => $challenge_id,
-                'status' => '',
-                'completed' => 1
-                ]);
-        } else {
-            if($req->status === null) {
-                $req->status = '';
-            }
-            $user_challenge->update([
-                'status' => $req->status,
-                'completed' => 1
-                ]);
-            $user_challenge->save();
+        if($req->status === null) {
+            $req->status = '';
         }
+
+        UserChallenge::updateOrInsert([
+            'user_id' => $user_id,
+            'challenge_id' => $challenge_id,
+            'status' => $req->status,
+            'completed' => 1
+        ]);
+        // if($user_challenge === null) {
+        //     UserChallenge::create([
+        //         'user_id' => $user_id,
+        //         'challenge_id' => $challenge_id,
+        //         'status' => '',
+        //         'completed' => 1
+        //         ]);
+        // } else {
+        //     if($req->status === null) {
+        //         $req->status = '';
+        //     }
+        //     $user_challenge->update([
+        //         'status' => $req->status,
+        //         'completed' => 1
+        //         ]);
+        //     $user_challenge->save();
+        // }
         
         // Get points of the challenge
         $challenge = Challenge::where('id', $challenge_id)->first();
@@ -47,8 +56,25 @@ class UserChallengeController extends Controller
         $user->update([
             'points' => $points
             ]);
-        $user->save();
+        
+        // Update user level
+        $user_points = User::select('points', 'level')->where('id', Auth::id())->get();
+        $levels = Level::all();
+        $status = $user_points[0]['level'];
+        $total = $user_points[0]['points'];
+        foreach ($levels as $level) {
+            if($total >= $level->points) {
+                $status = $level->name;
+            } else {
+                break;
+            }
+        }
 
+        $user->update([
+            'level' => $status
+            ]);
+
+        error_log('update: '.$user->level);
         return redirect()->route('challenges.index')->with('msg','Challenge status updated!');
     }
 
